@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Exercice 1 en jQuery</title>
+</head>
+    <body>
+        <form action="#" id="monFormulaire">
+            <input type="text" required placeholder="Nom et Prénom" id="nomcomplet">
+            <input type="submit" value="Je valide">
+        </form>
+
+        
+
+       <!-- Intégration de la librairie jQuery -->
+        <script
+            src="https://code.jquery.com/jquery-3.2.1.min.js"
+            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+            crossorigin="anonymous">
+        </script>
+        <script>
+            //  le .on remplace le .addEventListener
+            $('#monFormulaire').on('submit', function(event){
+            // Cette fonction anonyme sera exécutée à la sopumission du formulaire
+            // Permet d'annuler l'action par défaut du submit du formulaire
+            event.preventDefault(); // On met ce que l'on veut en paramètre, ici event ou e
+            // On stocke la valeur dans une variable car elle sera supprimer après le remplacement du formulaire
+            nom = $('#nomcomplet').val();
+            // Le $(this) renvoie à l'objet courant, à l'élément dans lequel on est
+            $(this).replaceWith('<p>Bonjour ' + $('#nomcomplet').val() + ' !</p>');
+            $('p').append('Bonsoir ' + nom + ' !').appendTo('body');
+            });
+        </script>    
+        
+    </body>
+</html>
