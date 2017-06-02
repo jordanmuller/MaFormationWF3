@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>API</title>
+</head>
+<body>
+    <form id="monFormulaire" method="post" action="connexion.php">
+        <input type="text" name="email" placeholder="Email"><br><br>
+        <input type="text" name="mdp" placeholder="Mot de passe"><br><br>
+        <input type="submit" id="submit" value="connexion">
+    </form>
+
+    <!--JQuery-->
+     <script
+    src="https://code.jquery.com/jquery-3.2.1.min.js"
+    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+    crossorigin="anonymous"></script>
+
+    
+    
+        <script>
+            $(function() {
+                // -- 1 Une requête Ajax Simple
+                $.ajax('http://geoip.nekudo.com/api/').done(function(resultat) {
+                    console.log(resultat);
+                })
+
+                // 2. avec getJSON et JSONP (callback)
+                $.getJSON('http://ip-api.com/json/?callback=', function (resultat) {
+                    console.log(resultat);
+
+                    // Affichage sur ma page
+                    $('<p>').text("Votre IP est surveillée : " + resultat.query + " " + resultat.isp).css({'background': 'red','color':'yellow'}).appendTo($('form'));
+                })
+            })
+      
+
+        
+    </script>
+</body>
+</html>

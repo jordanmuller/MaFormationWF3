@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Exercice 5</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <style>
+            main {
+                width: 900px;
+                height: auto;
+                margin: 0 auto;
+            }
+            section {
+                width: 100%;
+                height: auto;
+                min-height: 200px;
+                margin-bottom: 10px;
+                background-image: linear-gradient(0deg, #ccc, #fff);
+                border: 1px solid;
+            }
+            h3 {
+                font-family: Arial, Helvetica, sans-serif;
+                font-weight: normal;
+                text-align: center;
+                color: #000;
+            }    
+            article {
+                font-family: Arial, Helvetica, sans-serif;
+                font-size: 12px;
+                padding: 20px;
+            }
+            mark {
+                padding: 0;
+                background-color: aqua;
+                color: chocolate;
+            }
+            div {
+                margin-bottom: 20px;
+            }
+            input[type=text] {
+                width: 100%;
+                height: 30px;
+                background-image: linear-gradient(0deg, #eee 0%, #fff 0%);
+                border: 1px solid #eee;
+                font-family: 'Roberto Slab', serif;
+                font-size: 14px;
+                text-indent: 10px;
+            }
+        </style>
+    </head>
+    <body>
+        <main>
+            <div class="form-group">
+               < <label for="markjs" class="label label-primary">>Type in a keyword:</label>
+                <input type="text" name="keyword" class="form-control" placeholder="Lorem ipsum..." id="markjs">
+            </div>
+     
+            <!--<section>
+                <header>
+                     <h3>Titre de mon article</h3>
+                </header>
+                <article>
+                    Contenu de mon article
+                </article>
+            </section>     -->
+        </main>
+
+         
+         <!--JQuery-->
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js"
+        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous"></script>
+        
+        <!-- Bootstrap JS -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        
+        <!-- mark.js -->
+        <script     src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.10.1/jquery.mark.es6.min.js"></script>
+
+        <script>
+            // DOM est prêt
+            $(function () {
+                // Requête Ajax Simple
+                     $.ajax('http://jsonplaceholder.typicode.com/posts/', {
+                        dataType: 'jsonp'
+                    }).then(function(articles) {
+                        // On parcout les articles récupérés
+                        //for (i=0; i < 10; i++) {
+                            //let article = articles[i];
+                            // On affiche     
+                             /*$('h3').eq(i).replaceWith("<h3>" + article.title + "</h3>");
+                             $('article').eq(i).replaceWith("<article>" + article.body + "</article>");*/ 
+                            
+                            // 2eme méthode d'affichage
+                             /*$(`<section>
+                                     <header>
+                                         <h3>${article.title}</h3>
+                                     </header>
+                                     <article>
+                                         ${article.body}
+                                     </article>
+                               </section>`).appendTo($('main'));*/
+                            //  -- B 2eme solution : La boucle each, c'est une fonction jQuery, donc $.each, la boucle each est moins rapide
+                            $.each(articles, function (i, article) {
+                                $(`<section>
+                                     <header>
+                                         <h3>${article.title}</h3>
+                                     </header>
+                                     <article>
+                                         ${article.body}
+                                     </article>
+                               </section>`).appendTo($('main'))
+
+                               if (i == 10) {
+                                   return false;
+                               }
+                            });  
+
+                     }
+                    )}    
+            )
+
+            // Mark-JS
+            $('#markjs').on('input', function(e) {
+                //  Cette fonction va s'executer à chaque fois que l'utilisateur va lever son doigt d'une touche du clavier
+
+                // Récupérer la valeur saisie par l'utilisateur
+                let keyword = $(this).val();
+
+                // --
+                $('section').unmark().mark(keyword);
+            })
+            var mark = function() {
+                var keyword = $("input").val();
+                $('section').unmark({
+                    done: function() {
+                        $('section').mark(keyword);
+                    }
+                });
+            }    
+            $("input[name='keyword']").on("input", mark);
+      
+        </script>
+    </body>
+</html>

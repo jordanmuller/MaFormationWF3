@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Les animations en jQuery</title>
+        <style>
+            .box {padding: 10px;}
+            .carre {position: relative; width: 100px; height: 100px; background: #09f;} 
+        </style>
+    </head>
+    <body>
+        <div class="box">
+            <p>
+                <button id="play">Lancer</button>
+            </p>
+            <div class="carre"></div>
+        </div>
+
+        <!--JQuery-->
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js"
+        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous"></script>
+
+        <script>
+        $(function () {
+            // Récupérer l'évènement click sur le bouton
+            $('#play').on('click', (function() {
+                // Executer l'animation sur la classe "carre" avec animate()
+                $('.carre').animate({
+                    'left': '400px',
+                    'width': '400px',
+                    'height': '400px',
+                }, 500, "linear", function() {
+                    $('.carre').fadeOut(2000);
+                    alert( "L'animation est terminée");
+                    $('.carre').fadeIn(2000);
+                })
+            }))
+        });    
+        /*
+            jQuery dispose aussi de fonctions raccourcies pour les animations les plus courantes : fadeIn(), fadeOut(), slideDown() et slideUp
+        */
+        </script>
+    </body>
+</html>
