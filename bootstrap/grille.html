@@ -25,7 +25,7 @@
         <style>
             [class*="col-"] {
                 background-color: rgba(86, 61, 124, 0.15);
-                background-color: rgba(86, 61, 124, 0.2);
+                border: 1px solid rgba(86, 61, 124, 0.2);
                 padding-bottom: 15px;
                 padding-top: 15px;
                 margin-bottom: 5px;
@@ -33,8 +33,78 @@
         </style>
     </head>
     <body>
-        <!-- Contenu HTML -->
-        
+        <!-- Le container va inclure l'ensemble de nos lignes et colonnes -->
+        <!-- BOOTSTRAP propose 2 container : .container (il prend les valeurs qu'on lui a défini') et le .container-full (il prend 100% de lma largeur) -->
+        <main class="container">
+            
+            <!-- Création d'une ligne -->
+            <div class="row">
+
+                <!-- Dans votre ligne, ou rangée, vous pouvez créer plusieurs colonnes, mais rappelez-vous toujours sur la base de nos 12 colonnes -->
+
+                <!-- Une grande colonne de 12 -->
+                <div class="col-lg-12"></div>
+
+                <!-- Deux colonnes côte à côte -->
+                <div class="col-lg-6">col-lg-6</div>
+                <div class="col-lg-6">col-lg-6</div>
+
+                <!-- Trois colonnes côte à côte -->
+                <div class="col-lg-4">col-lg-4</div>
+                <div class="col-lg-4">col-lg-4</div>
+                <div class="col-lg-4">col-lg-4</div>
+
+                <!-- Quatre colonnes côte à côte -->
+                <div class="col-lg-3">col-lg-3</div>
+                <div class="col-lg-3">col-lg-3</div>
+                <div class="col-lg-3">col-lg-3</div>
+                <div class="col-lg-3">col-lg-3</div>
+
+                <!-- Je peux imbriquer mes rangées -->
+                <div class="col-lg-12">
+                    col-lg-12
+                    <div class="row">
+                        <div class="col-lg-4">col-lg-4</div>
+                        <div class="col-lg-8">col-lg-8
+                            <div class="row">
+                                <div class="col-lg-6">col-lg-6</div>
+                                <div class="col-lg-6">
+                                    <img class="img-responsive img-rounded img-thumbnail" src="http://lorempixel.com/400/200/sports/1/" alt="Illustration">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- ./div.row -->
+
+            <div class="row">
+
+                <!-- Observer le comportement des deux colonnes -->
+                <div class="col-lg-6">col-lg-6</div>
+                <div class="col-lg-6">col-lg-6</div>
+
+                <!-- Test avec MD -->
+                <div class="col-md-6">col-md-6</div>
+                <div class="col-md-6">col-md-6</div>
+
+                <!-- Test avec SM -->
+                <div class="col-sm-6">col-sm-6</div>
+                <div class="col-sm-6">col-sm-6</div>
+
+                <!-- Test avec XS -->
+                <div class="col-xs-6">col-xs-6</div>
+                <div class="col-xs-6">col-xs-6</div>
+            
+            </div> <!-- ./div.row -->
+
+            <div class="row">
+
+                <div class="col-xs-12 col-md-6 col-sm-3">col-xs-12</div>
+                <div class="col-xs-12 col-md-6 col-sm-9">col-xs-12</div>
+            
+            </div> <!-- ./div.row -->
+            
+        </main> <!-- ./main.container -->
 
         <!-- jQuery -->
         <script src="https://code.jquery.com/jquery-3.1.1.min.js"
