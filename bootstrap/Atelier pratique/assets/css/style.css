@@ -1,0 +1,66 @@
+
+body { 
+    padding-top: 70px;
+    background: #000;
+}
+
+
+.container {
+    margin: 0 auto;
+    width: 1100px;
+}
+.menu {
+    background: #1E1E1E;
+    border-radius: 0;
+    color: #fff;
+    height: 60px;
+    padding-top: 5px;
+}
+.menu ul {
+     
+}
+.menu ul li {
+    margin: 0 10px;
+}
+.menu ul li a {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 400;
+}
+.navbar-brand {
+    color: #fff !important;
+}
+
+.bandeau {
+    background: #141414;
+    height: 200px;
+}
+.bandeau ul {
+    padding-top: 10px;
+}
+section {
+    background: #000;
+    text-align: center;
+    padding-top: 50px;
+}
+section h1, section h2 {
+    color: #fff;
+}
+section h1 {
+    font-size: 50px;
+    font-weight: bold;
+}
+section h2 {
+    font-size: 60px;
+}
+section h4 {
+    color: #66BBFE;
+    font-size: 25px;
+}
+section p {
+    color: solidgrey;
+    font-size: 18px;
+}
+
+aside {
+    color: #fff;
+}

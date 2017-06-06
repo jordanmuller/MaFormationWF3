@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <!-- Encodage des caractères de la page -->
+        <meta charset="UTF-8">
+
+        <!-- Notre site va être affiché à 100% sur la largeur d'écran de tout appareil, sans zoom possible -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!-- Pour IE, s'assurer qu'il utilise la dernière version de son moteur de rendu -->
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        
+        <!-- styles CSS -->
+        <link rel="stylesheet" href="assets/css/correction.css">
+
+        <!-- CDN FontAwesome -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+         <!-- Font Roboto -->
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400" rel="stylesheet">
+
+        <!-- Un polyfill, HTML5 Shiv -->    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js" integrity="sha256-sqQlcOZwgKkBRRn5WvShSsuopOdq9c3U+StqgPiFhHQ=" crossorigin="anonymous"></script>
+
+        <!-- Respond.js -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
+
+        <!-- Le titre de la page -->
+        <title>Accueil - Apple Store iPhone</title>
+    </head>
+    <body>
+        <!-- Contenu HTML -->
+        <nav class="navbar navbar-inverse navbar-apple">
+            <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="navbar" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                
+                </div> <!-- ./navbar-header -->
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="navbar">
+                    <ul class="nav navbar-nav">
+                        <li><a class="logo-apple" href="#"><i class="fa fa-apple" aria-hidden="true"></i></a></li>
+                        <li><a href="#">Mac</a></li>
+                        <li><a href="#">iPad</a></li>
+                        <li class="active"><a href="#">iPhone</a></li>
+                        <li><a href="#">Watch</a></li>
+                        <li><a href="#">TV</a></li>
+                        <li><a href="#">Music</a></li>
+                        <li><a href="#">Assistance</a></li>
+                        <li><a href="#"><i class="fa fa-se arch" aria-hidden="true"></i></a></li>
+                        <li><a href="#"><i class="fa fa-shopping-bag" aria-hidden="true"></i></a></li>
+                    </ul>
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container -->
+        </nav>
+
+        <main>
+            <!-- SECTION MOBILE -->
+            <section id="mobile">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <ul class="list-inline text-center">
+                                <li><a href="#"><img src="assets/img/menu/iPhone7.png" alt="iPhone7"></a></li>
+                                <li><a href="#"><img src="assets/img/menu/iPhone6s.png" alt="iPhone6s"></a></li>
+                                <li><a href="#"><img src="assets/img/menu/iPhoneSE.png" alt="iPhoneSE"></a></li>
+                                <li><a href="#"><img src="assets/img/menu/iOs10.png" alt="iOs 10"></a></li>
+                                <li><a href="#"><img src="assets/img/menu/Accessoires.png" alt="Accessoires"></a></li>
+                                <li><a href="#"><img src="assets/img/menu/Comparer.png" alt="Comparer"></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION VISUEL -->
+            <section id="visuel">
+                <div class="container">
+                    <h1>iPhone</h1>
+                    <h2>Numéro 7</h2>
+                    <h4>En savoir plus <span>>></span></h4>
+                    <h4>Acheter <span>></span></h4>
+                    <p>Ou rendez-vous dès aujourd'hui dans un Apple Store</p>
+                    <img src="assets/img/hero_large.jpg" alt="iPhone" class="img-responsive">
+                </div>
+            </section>
+            
+            <!-- ASIDE PUBLICITE  -->
+            <aside>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-6">
+                                <img src="assets/img/iPhone.png" class="img-responsive" alt="iPhone">
+                        </div>
+                        <div class="col-sm-6 texte">
+                            <h2>Passez à l'Iphone 7</h2>
+                            <p>Echangez votre smartphone contre un Iphone neuf dans un Apple Store et bénéficiez de mensualités réduites</p>
+                            <h4>Comment ça marche ? ></h4>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+            <!--Section Formulaire-->
+            <section id="formulaire" 
+                <div class="container"> 
+                    <div class="row">
+                        <div class="col-sm-8 col-sm-push-2">
+                            <h2>Contacts</h2>
+                            <form action="contact.php" id="contact-form" class="form-horizontal">
+                                
+                                <!-- Nom et Prénom -->
+                                <div class="form-group">
+                                    <div class="col-xs-12">
+                                        <input type="text" class="form-control" name="nom" placeholder="Nom et Prénom" required>
+                                    </div>
+                                </div>    
+
+                                <!-- Email et Télépone -->
+                                <div class="form-group">
+                                    <div class="col-sm-6">
+                                        <input type="email" class="form-control" name="email" placeholder="Email" required>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control" name="tel" placeholder="Téléphone" required>
+                                    </div>
+                                </div>  
+
+                                <div class="form-group">
+                                    <div class="col-xs-12">
+                                        <input type="text" class="form-control" name="sujet" placeholder="Sujet" required>
+                                    </div>
+                                </div>   
+                                
+                                <!-- Sujet -->
+                                <div class="form-group">
+                                    <div class="col-xs-12">
+                                        <textarea rows="8" class="form-control" placeholder="Message..."></textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-xs-12">
+                                        <button type="submit" class="btn btn-primary"
+                                        value="Envoyer ma Demande">Envoyer ma Demande</button>
+                                    </div>
+                                    
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                            
+                           
+                </div>
+            </section>   
+            <footer>
+                <p>Une réalisation de Paris IV</p>
+            </footer>
+        </main>
+        
+
+        <!-- jQuery -->
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js"
+        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+        crossorigin="anonymous"></script>
+
+        <!-- Bootstrap JS -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+        <!-- Mon fichier JS -->
+        <script src="#"></script>
+    </body>
+</html>

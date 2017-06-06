@@ -1,0 +1,121 @@
+body { 
+    background: #000;
+}
+
+/*Menu du haut, navigation bootstrap*/
+.navbar-apple {
+    background: #1E1E1E;
+    border-radius: 0;
+    margin-bottom: 0;
+    color: #fff;
+}
+.navbar .navbar-nav {
+  display: inline-block;
+  float: none;
+  vertical-align: top;
+}
+
+.navbar .navbar-collapse {
+  text-align: center;
+}
+.navbar-apple ul {
+    text-align: center;
+}
+.navbar-apple ul li {
+    margin: 0 10px;
+   
+}
+.navbar-apple ul li a {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    color: #fff !important; 
+
+}
+.logo-apple {
+    color: #fff !important;
+}
+
+/*Section Mobile*/
+#mobile {
+    background: #141414;
+}
+#mobile ul {
+    padding: 10px 0;
+}
+#mobile ul li {
+    padding: 0 15px;
+}
+
+/*SECTION VISUEL*/
+#visuel {
+    background: #000;
+    text-align: center;
+    padding-top: 50px;
+}
+#visuel h1, #visuel h2 {
+    color: #fff;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+#visuel h1 {
+    font-size: 50px;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 400;
+}
+#visuel h2 {
+    font-size: 60px;
+     font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 300;
+}
+#visuel h4 {
+    color: #66BBFE;
+    font-size: 20px;
+    display: inline-block;
+    margin-right: 15px;
+}
+#visuel p {
+    color: #ccc;
+    font-size: 18px;
+}
+
+/* ASIDE PUBLICITE */
+aside {
+    background: #fff;
+    padding-top: 40px;
+}
+aside .texte {
+    text-align: center;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+aside .texte h2 {
+    font-size: 35px;
+    padding-top: 25px;
+    margin-bottom: 40px;
+    font-weight: 300;
+}
+aside .texte p {
+    font-size: 20px;
+    margin-bottom: 30px;
+}
+aside .texte h4 {
+    font-size: 25px;
+    color: #66BBFE;
+}
+#formulaire {
+    padding-top: 40px;
+}
+#formulaire h2 {
+    color: #fff;
+    text-align: center;
+    font-size: 50px;
+    font-family: 'Roboto Condensed', sans-serif;
+    margin-bottom: 40px;
+    font-weight: 400;
+}
+#formulaire button {
+    text-align: center;
+}
+
+footer p {
+
+}
