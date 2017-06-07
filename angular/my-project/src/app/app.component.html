@@ -1,0 +1,50 @@
+<header>
+    <nav class="navbar navbar-inverse">
+      <div class="navbar-header">
+        <a href="/" class="navbar-brand">Mes Contacts</a>
+      </div>
+    </nav>
+  </header>
+  
+  <div class="row">
+    <div class="col-sm-4">
+      <!-- *ngIf : permet de faire le rendu HTML de la div, que si le tableau Contacts contient des éléments -->
+      <div *ngIf="Contacts">
+        
+        <ul class="list-group list-contacts">
+          <li class="list-group-item" *ngFor="let contact of Contacts" (click)="choisirUnContact(contact)"
+          [class.active]="contact === contactActif">
+            {{contact.fullname}} <i>({{contact.username}})</i>
+          </li>
+        </ul>
+      
+      </div> <!-- ./*IfContacts -->
+    </div> <!-- ./col-sm-4 --> 
+
+    <div class="col-sm-8">
+      
+      <!-- Appel de notre composant app-profil-contact -->
+      <app-profil-contact [contact]="contactActif"></app-profil-contact>
+
+      <div class="jumbotron" *ngIf="!contactActif">
+        <!-- Avec {{}} j'affiche le contenu de la variable dans l'application -->
+        
+        <span class="glyphicon glyphicon-hand-left"></span>
+        <h2>
+          Bienvenue, choisis un contact
+        </h2>
+
+        
+        
+      </div> <!-- ./.jumbotron --> 
+
+    </div> <!-- ./ .col-sm-8 -->
+  
+  </div> <!-- ./row -->
+
+  <!-- <p>Bonjour {{Contact.fullname}} <i>({{Contact.username}})</i></p> -->
+
+  <footer class="text-center">
+    Copyright &copy; 2017
+  </footer>
+
