@@ -94,6 +94,9 @@
 					</a>
 				</div><!-- .header-image -->
 			<?php endif; // End header image check. ?>
+			<div>
+				<?php echo do_shortcode("[metaslider id=103]"); ?>
+			</div>
 		</header><!-- .site-header -->
 
 		<div id="content" class="site-content">

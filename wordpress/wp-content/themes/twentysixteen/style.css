@@ -177,6 +177,7 @@ button {
 	overflow: visible;
 }
 
+
 button,
 input,
 select,
@@ -818,6 +819,8 @@ a:active {
 	border-top: 1px solid #d1d1d1;
 	position: relative;
 }
+
+
 
 .main-navigation a {
 	color: #1a1a1a;
@@ -1630,6 +1633,10 @@ blockquote:after,
 	font-size: 0.8125rem;
 	margin: 1.076923077em 0;
 	padding: 0.769230769em;
+}
+
+#menu-menuannexe ul li {
+	display: inline-block;
 }
 
 .no-js .menu-toggle {
@@ -3979,4 +3986,12 @@ p > video {
 	.widecolumn {
 		padding: 0;
 	}
+}
+
+ul#menu-menuannexe {
+	margin: 0;
+}
+
+ul#menu-menuannexe.menu li {
+	display: inline-block;
 }
