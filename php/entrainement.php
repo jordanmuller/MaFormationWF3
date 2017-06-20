@@ -379,6 +379,89 @@ function affichage_pays()
     echo 'Le pays est ' . $pays . '<br>';
 }
 
+// Affichage météo
+function affichage_meteo($saison, $temperature = 0) 
+{
+    
+    return "Nous sommes en " . $saison . " et il fait " . $temperature . " degré(s)<br>";
+    echo 'Nous sommes mardi<br>'; // Cette ligne ne sera pas exécutée, lorsque l'on fait un return, on sort obligatoirement de la fonction et le code après le return n'est pas exécuté.
+    //  On peut avoir plusieurs return uniquement dans des conditions (if / elseif/ else).
+}
+echo affichage_meteo('été', 34);
+echo affichage_meteo('hiver', -1);
+echo affichage_meteo('printemps', 10);
+
+echo '<hr><hr>';
+
+function affichage_meteo2($saison, $temperature)
+{
+    if ($temperature === 1 || $temperature === 0 || $temperature === -1)
+    { 
+        if ($saison === "printemps")
+        {
+            return "Nous sommes au " . $saison . " et il fait " . $temperature . " degré.<br>";
+        }
+        else {
+            return "Nous sommes en " . $saison . " et il fait " . $temperature . " degré.<br>";
+        }
+    } else {
+        if ($saison === "printemps")
+        {
+            return "Nous sommes au " . $saison . " et il fait " . $temperature . " degrés.<br>";
+        }
+        else {
+            return "Nous sommes en " . $saison . " et il fait " . $temperature . " degrés.<br>";
+        }
+    }    
+}
+
+function affichage_meteo3($saison, $temperature)
+{
+    if (($temperature <= 1 && $temperature >= -1) && ($saison === "printemps"))
+    {  
+        return "Nous sommes au " . $saison . " et il fait " . $temperature . " degré.<br>";
+    }   
+    elseif (($temperature <= 1 && $temperature >= -1) && ($saison !== "printemps")) 
+    {
+        return "Nous sommes en " . $saison . " et il fait " . $temperature . " degré.<br>";
+    }
+    elseif (($temperature <= 1 && $temperature >= -1) && ($saison === "printemps")) 
+    {
+        return "Nous sommes au " . $saison . " et il fait " . $temperature . " degrés.<br>";
+    }
+    elseif (($temperature <= 1 && $temperature >= -1) && ($saison !== "printemps")) 
+    {
+        return "Nous sommes en " . $saison . " et il fait " . $temperature . " degrés.<br>";
+    }    
+}
+
+function meteo($saison, $temperature) 
+{
+    $en = 'en';
+    $s = 's';
+    if ($saison == 'printemps')
+    {
+        $en = 'au';
+    }
+    if ($temperature > -2 && $temperature < 2)
+    {
+        $s = '';
+    }
+    return "Nous sommes " . $en . " " . $saison . " et il fait " . $temperature . " degré" . $s . ".<br>"; // On privilégie un seul return par fonction si c'est possible pour éviter la répétition de code
+}
+
+echo affichage_meteo3('été', 34);
+echo affichage_meteo3('hiver', -1);
+echo affichage_meteo3('hiver', 0);
+echo affichage_meteo3('printemps', 10);
+
+echo '<hr><hr>';
+
+echo meteo('été', 34);
+echo meteo('hiver', -1);
+echo meteo('hiver', 0);
+echo meteo('printemps', 10);
+
 echo '<h1>Structure itérative: les boucles</h1>';
 
 $i = 0; // valeur de départ
@@ -438,7 +521,6 @@ for ($i = 0; $i < 10; $i++)
 $chiffre = 0;
 for ($i = 0; $i < 10; $i++)
 {
-    
      ?>
      <tr>
      <?php    
@@ -453,3 +535,131 @@ for ($i = 0; $i < 10; $i++)
 }
 ?>
 </table>
+<br>
+<table style="border-collapse: collapse;" border = "1"> 
+     
+<?php
+for ($i = 0; $i < 100; $i++)
+{
+    if ($i%10 == 0)
+    {
+        echo '<tr><td>' . $i . '</td>';
+    }
+    else {
+         echo '<td>' . $i . '</td>';
+    }
+}
+?>
+    </tr>
+</table>
+<br>
+<?php
+// Correction
+echo '<table style="border-collapse: collapse; width 100%;" border = "1"><tr>';
+
+for ($i = 0; $i < 10; $i++)
+{
+    echo '<td>' . $i . '</td>';
+}
+
+echo '</tr></table>';
+
+echo '<hr><hr>';
+
+echo '<table style="border-collapse: collapse; width 100%; text-align: center; color: red;" border = "1">';
+
+for ($j = 0; $j < 10; $j++)
+{
+    echo '<tr>'; 
+    for ($i = 0; $i < 10; $i++)
+    {
+        echo '<td>' . ($i + $j * 10) . '</td>'; // On peut aussi concaténer en écrivant echo '<td>' . $i . $j . '</td>';
+    }
+    echo '</tr>';
+}
+echo '</table>';
+
+echo '<h1>Les inclusions de fichier</h1>';
+// Créer un fichier dans le même dossier que celui-ci: exemple.inc.php
+// Dans ce fichier mettez du texte. (lorem)
+
+echo '<b>Première fois avec include:</b><br>';
+include("exemple.inc.php");
+
+// Les chemins
+// "exemple.inc.php" est un chemin relatif qui part du fichier entrainement.php
+// "../exemple.inc.php" est un chemin parent depuis le fichier entrainement.php
+// "/.../exemple.inc.php" est un chemin absolu qui part du serveur xampp ou celui utilisé (du htdocs)
+
+echo '<hr><b>Deuxième fois avec include_once:</b><br>'; // Le once vérifie si le fichier a déjà été appelé, si c'est le cas il ne l'affiche pas de nouveau
+include_once("exemple.inc.php");
+
+echo '<b>Première fois avec require:</b><br>';
+require("exemple.inc.php");
+
+echo '<hr><b>Deuxième fois avec require_once:</b><br>';
+require_once("exemple.inc.php");
+
+// Dans un fhier include() ou require(), on est dans une fonction, donc dans un espace global, il faut repasser les variables en global pour les utiliser
+// En cas d'erreur, include() affiche un avertissement et continue le traitement, require() stoppe l'exécution
+
+echo '<h1>Les tableaux ARRAY</h1>';
+// Un tableau array est déclaré un peu comme une variable sauf qu'au lieu de ne conserver qu'une seule et unique valeur, dans un tableau nous allons avoir un ensemble de valeurs.
+
+// Déclaration d'un tableau
+$tableau = array("lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi", "dimanche");
+
+// Outil pour voir le contenu d'un tableau
+echo '<b>Affichage du tableau avec print_r:</b><br>';
+echo '<pre>'; print_r($tableau); echo '</pre>';
+
+echo '<b>Affichage du tableau avec var_dump:</b><br>'; // Privilégier le var_dump() au print_r(), print_r() juste pour afficher le contenu d'une variable
+echo '<pre>'; var_dump($tableau); echo '</pre>';
+
+// Autre façon de déclarer un tableau array
+$tab = array(); // Cette ligne est facultative
+$tab[] = "France"; // On écrire comme celà directement
+$tab[] = "Italie"; 
+$tab[] = "Espagne"; 
+$tab[] = "Angleterre"; 
+$tab[] = "Portugal"; 
+$tab[] = "Belgique"; 
+$tab[] = "Hollande"; 
+
+echo '<pre>'; var_dump($tab); echo '</pre>';
+
+echo $tab[2] . '<br>'; // Pour extraire un élément, on passe par l'indice correspondant
+// Dans le doute faire une vérif avec var_dump
+
+echo '<hr>';
+
+// Boucle foreach pour les tableaux de données ARRAY ou Object
+foreach($tab AS $valeur)
+{
+    // foreach est un outil pour faire une boucle spécifique aux tableaux array et object
+    // Cette boucle est dynamique et tournera autant de fois qu'il y a d'éléments dans notre tableau
+    // Le mot clé AS est obligatoire et permet de donner un alias via une variable qui représentera à chaque tour de boucle la valeur en cours
+    echo $valeur . '<br>';
+}
+
+echo '<hr>';
+// Pour récupérer également l'indice en cours, il nous suffit de rajouter une variable de réception après le mot clé AS
+foreach($tab AS $ind => $val)
+{
+    echo $ind . ' - ' . $val . '<br>';
+}
+
+// Il est possible de choisir nous-mêmes les indices
+$plats = array('un' => 'Pâtes', 'deux' => 'Crêpes', 'trois' => 'Salade de fruits', 77 => 'Eau');
+echo '<pre>'; var_dump($plats); echo '</pre>';
+
+$couleurs['j'] = 'jaune';
+$couleurs['b'] = 'bleu';
+$couleurs['bl'] = 'blanc';
+$couleurs['m'] = 'marron';
+$couleurs['v'] = 'vert';
+$couleurs['r'] = 'rouge';
+
+echo '<pre>'; var_dump($couleurs); echo '</pre>';
+
+echo $couleurs['b'] . '<br>';
