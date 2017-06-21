@@ -663,3 +663,9 @@ $couleurs['r'] = 'rouge';
 echo '<pre>'; var_dump($couleurs); echo '</pre>';
 
 echo $couleurs['b'] . '<br>';
+
+// Pour connaître la taille d'un tableau (nombre d'élements dans le tableau array)
+echo 'Taille du tableau $couleurs: ' . count($couleurs) . '<br />';
+echo 'Taille du tableau $couleurs: ' . sizeof($couleurs) . '<br />';
+
+// count() et sizeof() font la même chose
