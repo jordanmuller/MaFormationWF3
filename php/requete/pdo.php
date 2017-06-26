@@ -32,14 +32,14 @@
 
 // Pour générer une connexion à la base de données // $pdo, on peut l'appeler comme on veut, c'est la variable de réception
 
-// 1 - Connexion à une BDD 
+echo '<h1>1 - Connexion à une BDD</h1>'; 
 $pdo = new PDO('mysql:host=localhost;dbname=wf3_entreprise', 'root', '', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING, PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'));
 
 // arguments: 1 - ('serveur + nom_bdd') 2 - identifiant 3 - mot de passe 4 - options
 // echo '<pre>'; var_dump($pdo); echo'</pre>'; 
 // echo '<pre>'; var_dump(get_class_methods($pdo)); echo'</pre>'; 
 
-// 2 - PDO: exec()
+echo '<h1>2 - PDO: exec()</h1>';
 // Insert
 
 // $resultat = $pdo->exec("INSERT INTO employes (prenom, nom, sexe, service, salaire, date_embauche) VALUES ('prenomtest7', 'nomtest', 'm', 'informatique', 2000, '2017-06-22'), ('prenomtest8', 'nomtest', 'm', 'informatique', 2000, '2017-06-22')"); // Dès que l'on raffraichit la page, l'insertion s'exécute à chaque fois, on la place donc en commentaire
@@ -47,7 +47,7 @@ $pdo = new PDO('mysql:host=localhost;dbname=wf3_entreprise', 'root', '', array(P
 // On place les requêtes sql entre guillemets, les valeurs entre quotes
 // echo "nombre de lignes insérées par la dernière requête: " . $resultat . '<br />';
 
-// 3 - PDO: QUERY => SELECT + FETCH (pour un seul résultat)
+echo '<h1>3 - PDO: QUERY => SELECT + FETCH (pour un seul résultat)</h1>';
 // On est obligés de mettre la query dans une variable résultat car on pose une question, ON UTILISE SELECT
 $resultat = $pdo->query("SELECT * FROM employes WHERE id_employes=350");
 echo '<pre>'; var_dump($resultat); echo'</pre>'; 
@@ -62,7 +62,7 @@ $info_employes = $resultat->fetch(PDO::FETCH_ASSOC); // FETCH_ASSOC pour un tabl
 // $info_employes = $resultat->fetch(PDO::FETCH_BOTH); 
 // FETCH_BOTH est un mélande de FETCH_ASSOC + FETCH_NUM
 
-// $info_employes = $resultat->fetch(PDO::FETCH_OBJ); 
+// $info_employes = $resultat->fetch(PDO::FETCH_OBJ); Pour obtenir un objet avec les éléments disponibles en propriétés publiques
 
 echo '<pre>'; print_r($info_employes); echo'</pre>'; 
 
@@ -86,7 +86,7 @@ On obtient un nouvel objet issu de la classe PDOStatement. Cet objet a donc des 
 - Le résultat est la réponse de la BDD et est inexploitable car Mysql nous renvoie beaucoup d'informations. Le fetch() permet de les organiser 
 */
 
-// 4 - PDO: QUERY + WHILE + FETCH (plusieurs résultats)
+echo '<h1>4 - PDO: QUERY + WHILE + FETCH (plusieurs résultats)</h1>';
 $resultat = $pdo->query("SELECT * FROM employes");
 
 echo 'Le nombre d\'employes: ' . $resultat->rowCount() . '<br />'; // La méthode rowCount() de l'objet PDOStatement retourne le nombre de lignes dans notre résultat.
@@ -108,7 +108,7 @@ while($info_employe = $resultat->fetch(PDO::FETCH_ASSOC))
     echo '</div>';
 }
 
-// 5 - EXERCICE
+echo '<h1>5 - EXERCICE</h1>';
 // Récupérer la liste des BDD présentent sur le serveur
 // Les traiter puis les afficher dans une liste ul li
 // Attention à l'indice si vous utilisez FETCH_ASSOC (les indices sont sensibles à la casse) Sur cette requete il y a une majuscule dans l'indice récupéré
@@ -129,3 +129,104 @@ while($info_dbb = $resultat->fetch(PDO::FETCH_ASSOC))
     echo '<li>' . $info_dbb['Database'] . '</li>';
 }
 echo '</ul>';
+
+echo '<h1> 6 - PDO: QUERY + FETCHALL + FETCH_ASSOC (plusieurs résultats)</h1>';
+$resultat = $pdo->query("SELECT * FROM employes");
+
+//  fectAll, il transforme le résultat complet en tableau multidimensionnel
+$liste_employes = $resultat->FETCHALL(PDO::FETCH_ASSOC);
+echo '<pre>'; print_r($liste_employes); echo '</pre>'; echo '<hr>';
+// fetchAll() traite toutes les lignes dans notre résultat et on obtient un tableau array multidimensionnel
+// 1er niveau la ligne en cours, 2eme niveau les informations
+
+foreach($liste_employes AS $valeur)
+{
+    echo $valeur['prenom'] . '<br />';
+}
+
+echo '<hr>';
+
+echo '<h1>7 - PDO: QUERY + AFFICHAGE EN TABLEAU</h1>';
+
+$contenu = $pdo->query("SELECT * FROM employes");
+
+// Balise ouverture du tableau
+echo '<table border="1" style="width: 80%; margin: 0 auto; border-collapse: collapse; text-align: center;">';
+
+// Première ligne du tableau pour le nom des colonnes
+echo '<tr>';
+// récupération du nombre de colonnes dans la requête
+$nb_col = $contenu->columnCount();
+
+for($i = 0; $i < $nb_col; $i++)
+{
+    // echo '<pre>'; print_r($contenu->getColumnMeta($i)); echo '</pre>'; echo '<hr>';
+    $colonne = $contenu->getColumnMeta($i); // On recupère les informations de la colonne en cours qui sont sous forme de tableau afin ensuite de demander le name. Pour chaque colonne.
+    
+    // On crée les en-têtes du tableau en récupérant le nom des colonnes de la bdd
+    echo '<th style="padding: 10px;">' . $colonne['name'] . '</th>';
+}
+echo '</tr>';
+
+// On parcourt $ligne du résultat de la requête dans $contenu
+while($ligne = $contenu->fetch(PDO::FETCH_ASSOC))
+{
+    echo '<tr>';
+        // On parcourt grâce à foreach tous les champs de chaque ligne de manière dynamique
+        foreach($ligne AS $info)
+        {
+            echo '<td style="padding: 10px;">' . $info . '</td>'; 
+            // On peut aussi faire à la main echo '<td>' . $contenu['id_employes'] . '</td>'; soit $contenu['nom_de_la_colonne']
+            // On peut aussi faire à la main echo '<td>' . $contenu['nom'] . '</td>'; 
+            // On peut aussi faire à la main echo '<td>' . $contenu['prenom''] . '</td>';
+        }
+
+    echo '</tr>';
+}
+
+
+echo '</table>';
+
+// ------------------------------------------------------
+// *************** SECURISATION DE DONNES ***************
+// ------------------------------------------------------
+echo '<h1> 8 - PDO: PREPARE + BINDPARAM + EXECUTE </h1>';
+
+$nom = "Laborde";
+
+$resultat = $pdo->prepare("SELECT * FROM employes WHERE nom = :nom");
+// :nom est un marqueur nominatif
+
+// Nous pouvons maintenant fournir la valeur du marqueur :nom
+$resultat->bindParam(":nom", $nom, PDO::PARAM_STR); 
+// bindParam(nom_du_marqueur, valeur_du_marqueur, type _attendu)
+$resultat->execute();
+$donnees = $resultat->fetch(PDO::FETCH_ASSOC);
+echo '<pre>'; print_r($donnees); echo '</pre>';
+
+// bindParam n'accepte que des valeurs sous forme de VARIABLE !!!
+
+// implode() & explode() (fonctions prédéfinies)
+// implode() permet d'afficher tous les éléments d'un tableau array séparées par un séparateur fourni en 2eme argument
+// explode() découpe une chaîne de caractères selon un séparateur fourni en 2eme argument et place chaque segment de cette chaîne dans un tableau array, à des indices différents
+// exemple:
+echo implode($donnees, '<br />');
+
+echo '<h1>8 - PDO: PREPARE + BINDVALUE + EXECUTE</h1>';
+echo '<hr /><hr />';
+$resultat = $pdo->prepare("SELECT * FROM employes WHERE nom = :nom");
+// nom est un marqueur nominatif
+$resultat->bindValue(":nom", "Laborde", PDO::PARAM_STR); //Il existe aussi PARAM_INT pour filtrer les entiers
+$resultat->execute();
+$donnees = $resultat->fetch(PDO::FETCH_ASSOC);
+
+
+$resultat2 = $pdo->prepare("SELECT * FROM employes WHERE id_employes = :id");
+$resultat2->bindValue(":id", 350, PDO::PARAM_INT);
+echo '<pre>'; print_r($donnees); echo '</pre>';
+
+$resultat2->execute();
+$donnees2 = $resultat2->fetch(PDO::FETCH_ASSOC);
+echo '<pre>'; print_r($donnees2); echo '</pre>';
+
+// BindValue accepte une variable ou la valeur directement pour le marqueur. (ce n'est pas le cas de bindParam qui n'accepte qu'une variable)
