@@ -31,6 +31,8 @@
                 case 'angleterre':
                     echo '<hr>Vous êtes Anglais ?<br>';
                     break; 
+                default:
+                    echo '<hr>Votre nationalité n\'est pas reconnue';
             }
         }
     ?>

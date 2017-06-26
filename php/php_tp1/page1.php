@@ -24,19 +24,20 @@
         switch($plat)
         {
             case 'pizza':
-            $message .= 'Vous avez choisi une pizza';
-            break;
+                $message .= 'Vous avez choisi une pizza';
+                break;
             case 'salade':
-            $message .= 'Vous avez choisi une salade';
-            break;
+                $message .= 'Vous avez choisi une salade';
+                break;
             case 'viande':
-            $message .= 'Vous avez choisi une viande';
-            break;
+                $message .= 'Vous avez choisi une viande';
+                break;
             case 'poisson':
-            $message .= 'Vous avez choisi un poisson';
-            break;
-            defaut:
-            $message .= 'Vous n\'avez rien choisi'; // Impossible de l'afficher
+                $message .= 'Vous avez choisi un poisson';
+                break;
+            default:
+                $message .= 'Vous n\'avez rien choisi'; 
+                break;
         }
     }
     echo $message; 

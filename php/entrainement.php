@@ -669,3 +669,85 @@ echo 'Taille du tableau $couleurs: ' . count($couleurs) . '<br />';
 echo 'Taille du tableau $couleurs: ' . sizeof($couleurs) . '<br />';
 
 // count() et sizeof() font la même chose
+
+echo '<h1>Tableau array multidimensionnel</h1>';
+// Nous parlons de tableaux array multidimensionnels lorsqu'un tableau est lui même contenu dans un autre tableau.
+
+$tableau_etudiants = array( 
+    0 => array('pseudo' => 'Marie', 'Nom' => 'Durand', 'email' => 'marie@email.fr'), 
+    1 => array('pseudo' => 'Luc', 'Nom' => 'Dupond', 'email' => 'luc@email.fr'), 
+    2 => array('pseudo' => 'Jean', 'Nom' => 'Soleil', 'email' => 'jean@email.fr'), // Pour les tableaux array, on peut laisser une virgule après la dernière valeur pour anticiper les prochains ajouts
+    );
+
+echo '<pre>'; print_r($tableau_etudiants); echo '</pre>';
+echo $tableau_etudiants[1]['email'] . '<br /><hr />'; // Nous rentrons d'abord l'indice 1 du premier niveau puis à l'indice 'email' du deuxième niveau
+
+$taille_tableau = count($tableau_etudiants);
+
+for($i = 0; $i < $taille_tableau; $i++)
+{
+    // Afficher les emails du deuxième niveau de ce tableau
+    echo $tableau_etudiants[$i]['email'] . '<br />';
+}
+echo '<hr />';
+// Avec un foreach
+foreach($tableau_etudiants AS $valeur)
+{
+    echo $valeur['email'] . '<br />';
+}
+
+echo '<hr><hr>';
+
+// On affiche tous les éléments du tableau
+foreach($tableau_etudiants AS $data)
+{
+    foreach($data AS $donnees)
+    {
+        echo $donnees . '<br />';
+    }
+    echo '<hr />';
+}
+
+echo '<h1>Les Objets</h1>';
+// Un objet est un autre type de données. Un peu à la manière d'un array, il permet de conserver des valeurs mais cela va plus loin puisqu'on peut également avoir des fonctions dans un objet.
+// L'objet est une variante d'une variable, c'est un espace-mémoire permettant de conserver des infos et d'appliquer des comportements
+// Une information dans un objet s'appelle une propriété ou attribut
+// Une fonction dans un objet s'appelle une méthode
+
+// Un objet est toujours issu d'une classe (som modèle de construction).
+
+// Pour déclarer une classe, on met une majuscule par convention
+class Etudiant 
+{
+    public $prenom = 'Marie'; // $prenom est une propriété
+    // public est un mot-clé permettant de préciser que l'élément sera accessible directement sur l'objet. Sinon il faudrait passer par des méthodes permettant de récupérer cette information ou de la modifier (Il existe aussi protected / private / static)
+    public $age = 25;
+    public function pays()
+    {
+        return 'France';
+    }
+}
+
+// Un objet un conteneur symbolique qui possède sa propre existence et incorpore des informations(propriétés) et des fonctions(méthodes)
+
+// Pour instancier un objet:
+$mon_objet_1 = new Etudiant(); // new est un mot clé obligatoire permettant d'instancier un objet depuis une classe
+$mon_objet_2 = new Etudiant(); // new est un mot clé obligatoire permettant d'instancier un objet depuis une classe
+
+echo '<pre>'; var_dump($mon_objet_1); echo '</pre>';
+echo '<pre>'; var_dump($mon_objet_2); echo '</pre>';
+
+// Pour voir les méthodes de l'objet avec la fonction get_class_methods()
+echo '<pre>'; var_dump(get_class_methods($mon_objet_1)); echo '</pre>';
+
+// Pour récupérer une propriété de l'objet
+echo $mon_objet_1->prenom . '<br />'; //Lorsqu'on appelle une propriété avec une flèche simple, on n'écrit le nom de la propriété dans "$"
+// Pour les tableaux, on utilise la double flèche =>
+
+// Pour récupérer une méthode de l'objet
+echo $mon_objet_1->pays() . '<br />';
+
+// On peut appeler ou modifier directement la propriété $prenom comme elle est publique 
+echo $mon_objet_1->prenom = "Jordan";
+
+// Dans l'absolu, la programmation objet permet de mieux organiser notre code, surtout pour le codeage en équipe
