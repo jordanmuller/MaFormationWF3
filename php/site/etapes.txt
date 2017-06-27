@@ -1,0 +1,7 @@
+init.inc.php
+function.inc.php
+header.inc.php
+nav.inc.php
+footer.inc.php
+
+On crée ses cinq fichiers qui comprendront toutes les parties de notre site

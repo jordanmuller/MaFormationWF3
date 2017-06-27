@@ -1,9 +1,36 @@
-* { font-family: calibri; }
+* { 
+    font-family: calibri; 
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0; 
+}
+
+.container {
+    width: 1000px;
+    margin: 0 auto;
+    padding: 5px;
+}
+h2 {
+    background: #004365;
+    color: #fff;
+    margin: 0;
+    height: 60px;
+    padding: 12px 40px;
+    font-size: 26px;
+    font-weight: bold;
+    font-style: italic;
+}
+i {
+    padding-left: 10px;
+}
 
 form { 
-    width: 33%; 
+    width: 100%; 
     min-width: 200px; 
-    margin: 0 auto;
+    margin: 20px auto;
 }
 
 input { 
@@ -11,13 +38,14 @@ input {
     border: 1px solid #dedede; 
     border-radius: 3px; 
     height: 28px; 
-    margin-bottom: 5px; 
+    margin-bottom: 15px; 
 }
 
 #submit {
-    background:ForestGreen;
+    background:#004365;
     color: #fff;
-    height: 32px;
+    height: 36px;
+    font-size: 18px;
 }
 
 textarea { 
@@ -30,18 +58,45 @@ textarea {
 
 label { 
     display: inline-block; width: 100%; font-style: italic; 
-    color: #663399; 
-    font-weight: bold ;
+    color: #FF572E; 
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 3px;
 }
 
-.message {
-    width: 33%; 
-    margin: 20px auto;
-    border: 1px solid;
-    padding: 5px;
+section {
+    background: #F5F5F5;
+    padding: 15px 15px;
+}
+
+.message_pair {
+    width: 100%; 
+    margin: 10px auto;
+    border: 1px solid #D5D5D5;
+    padding: 10px;
+    background: #EEF5FC;
+}
+.message_impair {
+    width: 100%; 
+    margin: 10px auto;
+    border: 1px solid #D5D5D5;
+    padding: 10px;
+    background: #fff;
+}
+.pseudo {
+    margin-bottom: 10px;
+    border-bottom: 1px dotted #D5D5D5;
+}
+.pseudo i {
+    padding: 0;
+    margin-right: 5px;
 }
 
 .date {
     font-size: 12px;
     color: DodgerBlue;
+    margin: 3px 0 0;
+}
+p.texte {
+    margin: 10px 0;
 }
