@@ -1,5 +1,5 @@
 <?php
-require("inc/init.inc.php");
+require("../inc/init.inc.php");
 
 
 
@@ -9,8 +9,8 @@ require("inc/init.inc.php");
 
 
 // Les affichages commencent ici, on termine toujours le php par les affichages
-require("inc/header.inc.php");
-require("inc/nav.inc.php");
+require("../inc/header.inc.php");
+require("../inc/nav.inc.php");
 ?>
     
     <div class="container">
@@ -25,16 +25,4 @@ require("inc/nav.inc.php");
 
     </div><!-- /.container -->
 <?php
-require("inc/footer.inc.php");
-
-
-
-
-
-
-
-
-
-
-
-
+require("../inc/footer.inc.php");

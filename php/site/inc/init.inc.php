@@ -9,3 +9,13 @@ require_once("function.inc.php");
 // Création de variables pouvant nous servir dans le cadre du projet:
 // Variable pour afficher des messages à l'utilisateur
 $message = "";
+
+// Ouverture de la session
+session_start();
+
+// Définition de constante pour le chemin absolu ainsi que pour la racine serveur
+// Racine site
+define("URL", "/formation/paris-iv/php/site/");
+
+// Racine serveur
+define("ROOT_SERVER", $_SERVER['DOCUMENT_ROOT'] . URL);

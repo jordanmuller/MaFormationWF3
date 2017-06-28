@@ -11,13 +11,13 @@
     <title>Ma boutique</title>
 
     <!--Le favicon, s'il n'y en a pas ne pas laisser le champ -->
-    <link rel="icon" href="img/mario-icon.png">
+    <link rel="icon" href="<?php echo URL; ?>img/mario-icon.png">
 
     <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="<?php echo URL; ?>css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="css/style.css" rel="stylesheet">
+    <link href="<?php echo URL; ?>css/style.css" rel="stylesheet">
   </head>
 
   <body>
