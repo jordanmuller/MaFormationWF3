@@ -20,7 +20,7 @@ require("inc/nav.inc.php");
     <div class="container">
 
       <div class="starter-template">
-        <h1><span class="glyphicon glyphicon-user" style="color: DarkRed;"></span>Profil (<?php if($_SESSION['utilisateur']['statut'] == 1) echo 'Administrateur'; else { echo 'Membre'; } ?>)</h1>
+        <h1><span class="glyphicon glyphicon-user" style="color: DarkRed;"></span> Profil (<?php if($_SESSION['utilisateur']['statut'] == 1) echo 'Administrateur'; else { echo 'Membre'; } ?>)</h1>
       </div>  
       <div class="row">
         <div class="col-sm-4" style="padding-top: 20px;">

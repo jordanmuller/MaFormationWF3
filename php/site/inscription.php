@@ -119,7 +119,7 @@ require("inc/nav.inc.php");
     <div class="container">
 
       <div class="starter-template">
-        <h1><span class="glyphicon glyphicon-user" style="color: plum;"></span>Inscription</h1>
+        <h1><span class="glyphicon glyphicon-user" style="color: plum;"></span> Inscription</h1>
       </div>
       <?php // echo $message; // messages destinés à l'utilisateur ?>
       <!-- Le = est un raccourci de echo, les balises ci dessus et ci dessous sont les mêmes, cela ne fonctionne que pour les echo -->

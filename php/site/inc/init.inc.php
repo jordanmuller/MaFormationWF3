@@ -14,8 +14,8 @@ $message = "";
 session_start();
 
 // Définition de constante pour le chemin absolu ainsi que pour la racine serveur
-// Racine site
+// Racine du site, depuis xampp (htdocs) jusqu'à notre projet
 define("URL", "/formation/paris-iv/php/site/");
 
-// Racine serveur
+// Racine du serveur vers localhost, depuis le serveur jusqu'à notre serveur local
 define("ROOT_SERVER", $_SERVER['DOCUMENT_ROOT'] . URL);
