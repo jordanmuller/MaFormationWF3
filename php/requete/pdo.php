@@ -133,7 +133,7 @@ echo '</ul>';
 echo '<h1> 6 - PDO: QUERY + FETCHALL + FETCH_ASSOC (plusieurs résultats)</h1>';
 $resultat = $pdo->query("SELECT * FROM employes");
 
-//  fectAll, il transforme le résultat complet en tableau multidimensionnel
+//  fecthAll, il transforme le résultat complet en tableau multidimensionnel
 $liste_employes = $resultat->FETCHALL(PDO::FETCH_ASSOC);
 echo '<pre>'; print_r($liste_employes); echo '</pre>'; echo '<hr>';
 // fetchAll() traite toutes les lignes dans notre résultat et on obtient un tableau array multidimensionnel
