@@ -2,10 +2,7 @@
 // Connexion à la bdd
 $pdo = new PDO('mysql:host=localhost;dbname=repertoire', 'root', '', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING, PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'));
 
-// Requête pour connaître le nombre de colonnes de la bdd 
-$contenu = $pdo->query("SELECT * FROM annuaire");
-$nb_col = $contenu->columnCount();
-echo $nb_col;
+
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -31,12 +28,6 @@ echo $nb_col;
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
           <a class="navbar-brand" href="#">Project name</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
@@ -58,10 +49,39 @@ echo $nb_col;
       <table border="1" style="width: 80%; margin: 0 auto; border-collapse: collapse; text-align: center;">
         <tr>
         <?php
+
+        // Requête pour connaître le nombre de colonnes de la bdd 
+        $contenu = $pdo->query("SELECT * FROM annuaire");
+        $nb_col = $contenu->columnCount();
+        for($i = 0; $i < $nb_col; $i++)
+        {
+          $colonne = $contenu->getColumnMeta($i);
+          echo '<th style="padding: 10px;">' . $colonne['name'] . '</th>';
+        }
+        echo '<th style="padding: 10px;">Modifier</th>';
+        echo '<th style="padding: 10px;">Supprimer</th>';
+
+        while($ligne = $contenu->fetch(PDO::FETCH_ASSOC))
+        {
+          echo '<tr>';
+          foreach($ligne AS $info)
+          {
+            echo '<td style="padding: 10px;">' . $info . '</td>';
+          }
+          echo '<td style="padding: 10px;"><a href="?action=modifier"><span class="glyphicon glyphicon-pencil btn btn-warning"></span></a></td>';
+          echo '<td style="padding: 10px;"><a href="?action=supprimer"><span class="glyphicon glyphicon-trash btn btn-danger"></span></a></td>';
+          echo '</tr>';
+        }
             
         ?>
         </tr>
       </table>
+
+      <?php
+        $nombre_homme = $pdo->query("SELECT * FROM annuaire WHERE sexe = 'm'");
+        $nombre_femme = $pdo->query("SELECT * FROM annuaire WHERE sexe = 'f'");
+        echo 'Il y a ' . $nombre_homme->rowCount() . ' homme(s) et ' . $nombre_femme->rowCount() . ' femme(s)';
+      ?>
     </div><!-- /.container -->
 
 
