@@ -33,15 +33,16 @@ function creation_panier()
         $_SESSION['panier']['prix'] = array();
         $_SESSION['panier']['quantite'] = array();
         $_SESSION['panier']['titre'] = array();
+        $_SESSION['panier']['photo'] = array();
     }
 }
 
 // Ajouter un article au panier
-function ajouter_un_article_au_panier($id_article, $prix, $quantite, $titre)
+function ajouter_un_article_au_panier($id_article, $prix, $quantite, $titre, $photo)
 {
     // Avant d'ajouter on vérifie si l'article n'est pas déjà présent dans le panier, si c'est la cas on ne faut que modifier la quantité
     $position = array_search($id_article, $_SESSION['panier']['id_article']);
-    // array_search() permet de vérifier si une valeur se trouve dans un tableau array. Si c'est le cas on récupère l'indice correspondant
+    // array_search() permet de vérifier si une valeur se trouve dans un tableau array. Si c'est le cas on récupère l'indice correspondant, il renvoie un entier
 
     if($position !== FALSE)
     {
@@ -54,5 +55,40 @@ function ajouter_un_article_au_panier($id_article, $prix, $quantite, $titre)
         $_SESSION['panier']['quantite'][] = $quantite;
         $_SESSION['panier']['prix'][] = $prix;
         $_SESSION['panier']['titre'][] = $titre;
+        $_SESSION['panier']['photo'][] = $photo;
     }
+}
+
+function retirer_article_panier($id_article)
+{
+    // On vérifie si un article est bien présent dans le panier et avec array_search() on récupère son indice correspondant
+    $position = array_search($id_article, $_SESSION['panier']['id_article']);
+
+    if($position !== FALSE)
+    {
+        // Retire un élément du tableau et réordonne le tableau pour combler le trou suite à la supression
+        array_splice($_SESSION['panier']['id_article'], $position, 1);
+        array_splice($_SESSION['panier']['titre'], $position, 1);
+        array_splice($_SESSION['panier']['quantite'], $position, 1);
+        array_splice($_SESSION['panier']['prix'], $position, 1);
+        array_splice($_SESSION['panier']['photo'], $position, 1);
+
+        // array_splice(le_tableau_concerne, indice_a_supprimer, nb_d_elements_a_supprimer)
+    }
+}
+
+// Calcul du montant total du panier
+function montant_total()
+{ 
+    if(!empty($_SESSION['panier']['titre']))
+    {
+        $taille_tab = sizeof($_SESSION['panier']['quantite']);
+        $total = 0;
+        for($j = 0; $j < $taille_tab; $j++)
+        {
+            $total += $_SESSION['panier']['prix'][$j] * $_SESSION['panier']['quantite'][$j];
+        }
+        return $total;
+    }
+
 }

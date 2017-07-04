@@ -19,11 +19,30 @@ require("inc/nav.inc.php");
         <h1 style="color: darkred;"><span class="glyphicon glyphicon-gift"></span> Ma Boutique</h1>
       </div>  
 
-      <!--<ul class="nav nav-tabs">
-        <li role="presentation" <?php if(isset($_GET['sexe']) && $_GET['sexe'] == 'femme') { echo 'class="active"'; } ?>><a href="?sexe=femme">Femme</a></li>
-        <li role="presentation" <?php if(isset($_GET['sexe']) && $_GET['sexe'] == 'homme') { echo 'class="active"'; } ?>><a href="?sexe=homme">Homme</a></li>
-        <li role="presentation" <?php if(isset($_GET['sexe']) && $_GET['sexe'] == 'enfant') { echo 'class="active"'; } ?>><a href="?sexe=enfant">Enfant</a></li>
-     </ul>-->
+      <?php
+        $requete = $pdo->query("SELECT DISTINCT sexe FROM article");
+      ?>
+        <ul class="nav nav-tabs">
+     <?php
+        while($ligne = $requete->fetch(PDO::FETCH_ASSOC))
+        {
+
+            foreach($ligne AS $sexe)
+            {
+                if ($ligne['sexe'] == 'm')
+                {
+                    $homme = 'Homme'; 
+                    echo '<li role="presentation"><a href="?sexe=' . $sexe . '">' . $homme . '</a></li>';
+                } else {
+                    $femme = 'Femme';
+                    echo '<li role="presentation"><a href="?sexe=' . $sexe . '">' . $femme . '</a></li>';
+                }
+
+                
+            }
+        }
+     ?>
+     </ul>
 
      <div class="row">
         <div class="col-sm-2">
@@ -66,7 +85,17 @@ require("inc/nav.inc.php");
                     $contenu->execute();
                 }
 
-
+                if(empty($_GET['sexe']))
+                { 
+                    $contenu = $pdo->query("SELECT * FROM article");
+                }
+                else {
+                    $sexe = $_GET['sexe'];
+                    $contenu = $pdo->prepare("SELECT * FROM article WHERE sexe = :sexe");
+                    $contenu->bindParam(":sexe", $sexe, PDO::PARAM_STR);
+                    $contenu->execute();
+                }
+                
             ?> 
                         <?php
                         echo '<div class="row">';

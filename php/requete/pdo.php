@@ -47,6 +47,9 @@ echo '<h1>2 - PDO: exec()</h1>';
 // On place les requêtes sql entre guillemets, les valeurs entre quotes
 // echo "nombre de lignes insérées par la dernière requête: " . $resultat . '<br />';
 
+// Pour récupérer le dernier id inséré
+// echo $pdo->lastInsertId();
+
 echo '<h1>3 - PDO: QUERY => SELECT + FETCH (pour un seul résultat)</h1>';
 // On est obligés de mettre la query dans une variable résultat car on pose une question, ON UTILISE SELECT
 $resultat = $pdo->query("SELECT * FROM employes WHERE id_employes=350");
