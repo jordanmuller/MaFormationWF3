@@ -1,0 +1,10 @@
+footer {
+    background: grey;
+    height: 100px;
+    color: white;
+    padding: 40px;
+}
+
+section {
+    min-height: 800px;
+}

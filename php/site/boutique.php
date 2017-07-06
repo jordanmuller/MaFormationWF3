@@ -1,6 +1,6 @@
 <?php
 require("inc/init.inc.php");
-
+echo '<pre>'; var_dump($_SESSION); echo '</pre>';
  $contenu = $pdo->query("SELECT * FROM article");
 
 // Requête de récupération de tous les produits
@@ -78,6 +78,7 @@ echo '<pre>'; print_r($_POST); echo '</pre>';
 
       <div class="starter-template">
         <h1 style="color: darkred;"><span class="glyphicon glyphicon-gift"></span> Ma Boutique</h1>
+        
       </div>  
 
 
