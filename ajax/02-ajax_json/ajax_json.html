@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Ajax JSON</title>
+    </head>
+    <body>
+        <select onchange="ajax();" id="choix" style="width: 50%; display: block; margin: 0 auto; min-height: 28px; border: 1px solid #dedede; border-radius: 3px;">
+            <option></option>
+            <option>Laura</option>
+            <option>Stéphanie</option>
+            <option>Guillaume</option>
+            <option>Amandine</option>
+            <option>Daniel</option>
+            <option>Julien</option>
+        </select>
+        <hr />
+        <div id="resultat">
+            
+        </div> 
+
+        <script>
+            // On aurait pu écrire
+            /*
+            document.getElementById("choix").addEventListener("change", ajax);
+            */
+            function ajax () { 
+                // On enregistre le fichier cible dans une variable
+                var file = "ajax_json.php";
+                
+                // On peut écrire les if et les else sans accolades s'il n'y a qu'une seule ligne d'instruction. Même chose pour les boucles, fonctionne aussi en PHP
+                if(window.XMLHttpRequest) 
+                    var xhttp = new XMLHttpRequest(); // Pour la plupart des navigateurs
+                else 
+                    var xhttp = new ActiveXObject("Microsoft.XMLHTTP"); // Dans le cas des vieilles versions d'IE, le else se déclenche 
+                
+                // On récupère la valeur du champ select
+                var choix = document.getElementById("choix").value;
+                console.log(choix);
+
+                // Préparation du ou des paramètres qu'on va fournir à PHP
+                var parameters = "personne=" + choix; // On peut rajouter des indices en écrivant + "&indice2=" + choix2 ...
+                console.log(parameters);
+
+                xhttp.open("POST", file, true);
+                // La ligne suivante est OBLIGATOIRE en méthode post, elle doitêtre p^récisée Après le OPEN et avant le xhttp.send()
+                xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+                // Mise en place de l'évènement
+                xhttp.onreadystatechange = function () {
+                    if(xhttp.readyState == 4 && xhttp.status == 200) 
+                    {
+                        console.log(xhttp.responseText);
+                        // Dès qu l'on obtient une réponse au format JSON, on effectue un JSON.perse()
+                        var reponse = JSON.parse(xhttp.responseText);
+                        document.getElementById('resultat').innerHTML = reponse['resultat'];
+                    }
+                }
+                xhttp.send(parameters); // On envoie avec les paramètres (personne=valeur)
+            }
+        </script>
+    </body>
+</html>

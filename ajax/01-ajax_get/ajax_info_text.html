@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Exercice Ajax</title>
+    </head>
+    <body>
+        <div style="width: 50%; margin: 0 auto;">
+            <p id="demo" style="border: 1px solid; padding: 30px;">
+                ...
+            </p>
+            <button type="button" id="action">Changer contenu</button>
+        </div>
+        <script>
+            // Lorsque l'on clique sur le bouton, la fonction changerContenu s'exécute
+            document.getElementById("action").addEventListener("click", changerContenu);
+
+            function changerContenu () {
+                // On crée l'objet instancié par la classe XMLHttpRequest
+                var xhttp = new XMLHttpRequest();
+                // Lorsque le statut de la requête change
+                xhttp.onreadystatechange = function () {
+
+                    // On vérifie si la réponse est prête, on définit l'action quand on reçoit la réponse
+                    if(xhttp.readyState == 4 && xhttp.status == 200) {
+
+                        console.log(xhttp.responseText);
+                        // Si c'est le cas, on remplace le contenu de l'élément id demo par la réponse de la requête
+                        document.getElementById("demo").innerHTML = xhttp.responseText;
+                        // On peut également utiliser document.getElementById("demo").textContent = xhttp.responseText
+                        // .textContent ne modifie que le texte, il n'interprète pas les balises html s'il y en a dans ajax_info_text.txt
+                    }
+                }
+                // On prépare la requête HTTP
+                xhttp.open("GET", "ajax_info_text.txt", true);
+                // On l'envoie
+                xhttp.send();
+            }
+        </script>
+    </body>
+</html>

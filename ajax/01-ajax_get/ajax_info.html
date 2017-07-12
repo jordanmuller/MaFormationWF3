@@ -1,0 +1,70 @@
+<!--
+Référence pour l'objet XMLHttpRequest (les docs)
+
+MSDN: microsoft
+https://msdn.microsoft.com/en-us/library/ms535874(v=vs.85).aspx
+
+MDN: Mozilla
+https://developer.mozilla.org/fr/docs/Web/API/XMLHttpRequest
+
+Les status de la requête XMLHttpRequest
+- 0 => L'object créé, demande non initialisée 
+- 1 => Connexion avec le serveur établie
+- 2 => Demande envoyée et reçu par le serveur
+- 3 => Traitement côté serveur
+- 4 => Demande terminée et réponse reçue
+
+Statuts HTTP:
+https://fr.wikipedia.org/wiki/Liste_des_codes_HTTP
+
+"200" => OK
+"403" => "Forbidden"
+"404" => "Not found"
+
+Nous attendrons toujours que le statut de la requête soit à 4 et le statut http soit à 200 afin de manipuler la réponse
+-->
+
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Ajax info</title>
+        <style>
+            h1 { padding: 10px; background-color: darkred; color: white; font-family: calibri; }
+        </style>
+    </head>
+    <body>
+        <div id="demo">
+            <h1>Titre</h1>
+        </div>
+        <button type="button" id="action">Changer le titre</button>
+    
+        <script>
+            // On récupère l'élément action et on ajoute lors de l'évènement clic le déclenchement d'une fonction
+            document.getElementById("action").addEventListener("click", changerTitre);
+
+            function changerTitre () {
+                // Instanciation de l'objet XMLHttpRequest issu de la classe XMLHttpRequest
+                var xhttp = new XMLHttpRequest();
+                // Lorsque le statut de la requête XMLHttpRequest change
+                xhttp.onreadystatechange = function () {
+                    console.log('Statut http: ' + xhttp.status); // statut hhtp
+                    console.log('Statut Ajax: ' + xhttp.readyState); // statut requête ajax
+
+                    // Vérification si la réponse est prête
+                    if(xhttp.readyState == 4 && xhttp.status == 200) {
+                        // innerHTML récupère ou définit tout le balisage et le contenu au sein d'un élément donné.
+                        document.getElementById("demo").innerHTML = xhttp.responseText;
+                    }
+                }
+            xhttp.open("GET", "ajax_info.txt", true); // On prépare une requête HTTP -> 1er argument: la méthode, 2eme argument: le fichier cible, 3eme argument: Asynchrone (par défaut)
+            // open s'utilise de cette façon : open(sMethod, sUrl, bAsync) sMethod : la méthode de transfert : GET ou POST; sUrl : la page qui donnera suite à la requête. Ça peut être une page dynamique (PHP, CFM, ASP) ou une page statique (TXT, XML...);
+            xhttp.send() // On envoie la requête HTTP
+            }
+
+            
+        </script>
+    </body>
+</html>

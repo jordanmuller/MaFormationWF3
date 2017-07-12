@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>AJAX Select</title>
+        <style>
+            select, input { width:100%; display: block; margin: 0 auto; min-height: 28px; border: 1px solid #dedede; border-radius: 3px; }
+            #pays option:first-child { color: blue !important; }
+        </style>
+    </head>
+    <body>
+        <div style="width: 50%; margin: 0 auto;">
+            <form metod="post" action="">
+                <label for="pays">Pays</label>
+                <select id="pays" name="pays">
+                    <option value="">Choisissez un pays</option>
+                    <option>France</option>
+                    <option>Italie</option>
+                    <option>Espagne</option>
+                </select>
+                <label for="ville">Ville</label>
+                <!--Lorsque l'utilisateur choisira un pays, on lui proposera une ville-->
+                <select name="ville" id="ville"></select>
+                <hr />
+                <input type="submit" value="Valider" />
+            </form>
+        </div>
+        <script>
+            var champPays = document.getElementById("pays");
+            // On met en place l'événement
+            champPays.addEventListener("change", monAjax);
+
+            function monAjax() {
+                var file = "select.php";
+
+                 // On peut écrire les if et les else sans accolades s'il n'y a qu'une seule ligne d'instruction. Même chose pour les boucles, fonctionne aussi en PHP
+                if(window.XMLHttpRequest) 
+                    var xhttp = new XMLHttpRequest(); // Pour la plupart des navigateurs
+                else 
+                    var xhttp = new ActiveXObject("Microsoft.XMLHTTP"); // Dans le cas des vieilles versions d'IE, le else se déclenche 
+
+                var valeur = champPays.value;
+                console.log(valeur);
+
+                // Paramètre(s)
+                var param = "pays=" + valeur;
+
+                xhttp.open("POST", file, true);
+                // Obligé pour que la requête soit reconnue en POST, sans qu'on ai à valider le formulaire, ici on change juste champPays
+                xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+                xhttp.onreadystatechange = function () {
+                    if(xhttp.readyState == 4 && xhttp.status == 200)
+                    {
+                        // Cette ligne permet de corriger son PHP à partir de la console du navigateur,  il doit être placé avant le JSON.parse()
+                        console.log(xhttp.responseText);
+                        // On convertit la réponse HTTP (array PHP encodé au format JSON) en objet JSON
+                        var result = JSON.parse(xhttp.responseText);
+                        // On obtient l'objet result avec la clé resultat
+                        console.log(result);
+                        // On sélectionne l'élément select avec l'id ville, on remplace le contenu de cet élément par la réponse de la requête, avec la clé définit en php
+                        document.getElementById("ville").innerHTML = result.resultat;
+
+                        // equivalent d'un var_dump
+                        function dump(obj) {
+                            var out = "";
+                            for (var i in obj) {
+                                out += i + ": " + obj[i] + "\n";
+                            }
+                            console.log("objet:" + out)
+                        }
+                        // dump(result);
+                    }
+                }
+                xhttp.send(param);
+            }
+        </script>
+    </body>
+</html>
