@@ -8,7 +8,7 @@ if(!empty($_GET['prenom']))
 {
 
 }
-
+// On sélectionne tous les élements de la table employés
 $table = $pdo->query("SELECT * FROM employes");
 
 $tab['tableau'] .= "<table border='1'><tr>";

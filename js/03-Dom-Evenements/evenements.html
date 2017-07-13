@@ -1,0 +1,197 @@
+<html>
+<head>
+	<style>
+		#div1{ background: red; padding: 50px; color: white; }
+		#div5{ background: black; padding: 50px; color: white; }
+		#div6{ background: blue; padding: 50px; color: white; }
+		#div10{ background: brown; padding: 50px; color: white; }
+		#div11{ background: tomato; padding: 50px; color: white; }
+		#div15{ background: purple; padding: 50px; color: white; }
+		hr{ margin: 50px 0; }
+	</style>
+</head>
+<body>
+
+<h1>Click</h1><div id="div1"> Div1 </div><hr>
+<h1>dblclick</h1><div id="div5"> div5 </div><hr>
+<h1>mouseover</h1><div id="div10"> div10 </div><hr>
+<h1>mouseout</h1><div id="div11"> div11 </div><hr>
+<h1>mousedown</h1><div id="div15"> div15 </div><hr>
+
+<h1>blur</h1><form method="post" action=""><input type="text" id="div2"></form><hr>
+<h1>focus</h1><form method="post" action=""><input type="text" id="div3"></form><hr>
+<h1>change</h1><form method="post" action=""><input type="text" id="div4"></form><hr>
+<h1>keydown</h1><form method="post" action=""><input type="text" id="div7"></form><hr>
+<h1>keypress</h1><form method="post" action=""><input type="text" id="div8"></form><hr>
+<h1>keyup</h1><form method="post" action=""><input type="text" id="div9"></form><hr>
+<h1>select</h1><form method="post" action=""><input type="text" id="div12"></form><hr>
+<h1>input</h1><form method="post" action=""><input type="text" id="div13"></form><hr>
+<h1>submit</h1><form method="post" action="" id="div14"><input type="submit"></form><hr>
+
+<img src="yarien.gif" id="image">
+
+<!-- <h1>drag&drop</h1><div id="div6"> div6 </div><hr> -->
+<script>
+
+// -------- RESUME/SYNTAXE (plusieurs possibilité d'écriture) :
+	// document.getElementById("div1").onclick = div1; // <== evenement sur l'objet, function déclarée plus loin.
+	// document.getElementById("div1").onblur=function(){myScript}; // <== evenement sur l'objet, function déclarée ici.
+	// document.getElementById("div1").addEventListener("blur", myScript); // <== evenement ajouté sur l'objet via addEventListener, function déclarée plus loin.
+	// document.getElementById("div1").addEventListener("submit", function(event){  event.preventDefault(); alert('div14 - submit! ');}); // <== evenement ajouté sur l'objet via addEventListener, function déclarée ici.
+	// <div onBlur="myScript">...</div> <== méthode initiale/ancienne.
+
+// -------- CHARGEMENT (plusieurs possibilité d'écriture)
+	// window.addEventListener("load", page);
+	// window.onload = function(){};
+	// document.addEventListener("DOMContentLoaded", function(event) { alert('dom loadé'); });
+
+// -------- DIV
+document.getElementById("div1").addEventListener("click", div1);
+document.getElementById("div5").addEventListener("dblclick", div5);
+document.getElementById("div10").addEventListener("mouseover", div10);
+document.getElementById("div11").addEventListener("mouseout", div11);
+document.getElementById("div15").addEventListener("mousedown", div15); // on clic sur la div15, une alerte arrive on appui sur "espace" sur le clavier pour la zapper, lorsqu'on relache le clic mouseup se déclenche.
+document.getElementById("div15").addEventListener("mouseup", div15bis);
+
+// -------- PAGE
+//window.addEventListener("resize", resolution);
+document.getElementById("image").addEventListener("error", div16);
+
+// -------- FORM
+document.getElementById("div2").addEventListener("blur", div2);
+document.getElementById("div3").addEventListener("focus", div3);
+document.getElementById("div4").addEventListener("change", div4);
+document.getElementById("div7").addEventListener("keydown", div7);
+document.getElementById("div8").addEventListener("keypress", div8);
+document.getElementById("div9").addEventListener("keyup", div9);
+document.getElementById("div12").addEventListener("select", div12);
+document.getElementById("div13").addEventListener("input", div13);
+document.getElementById("div14").addEventListener("submit", function(event){
+    event.preventDefault();
+	 alert('div14 - submit! ');
+});
+
+// -------- DIVERS
+/*
+window.addEventListener("beforeunload", function(event) {
+	confirm('div15 - unload - êtes vous sur de vouloir partir ? cest dommage...! '); 
+      });
+*/  
+//document.getElementById("div6").addEventListener("dragdrop", div6);
+
+
+// -------- NOS FONCTIONS DE TESTS.
+function div1(event){ /*alert('div1 - clic div1');*/ this.style.backgroundColor = "brown"; }
+function div2(){ alert('div 2 - onblur focus perdu'); }
+function div3(){ alert('div3 - focus actif'); }
+function div4(){ alert('div4 - changement!'); }
+function div5(){ alert('div5 - double click!'); }
+//function div6(){ alert('div6 - drag&drop!'); }
+function div7(){ var r = document.getElementById("div7"); alert('div7 - keydown! '+r.value); }
+function div8(){ var r = document.getElementById("div8"); alert('div8 - keypress! '+r.value); }
+function div9(){ var r = document.getElementById("div9"); alert('div9 - onkeyup! '+r.value); }
+function div10(){ alert('div10 - mouseover! '); }
+function div11(){ alert('div11 - mouseout! '); }
+function div12(){ alert('div12 - select! '); }
+function div13(){ alert('div13 - input! '); }
+function div15(){ alert('div15'); }
+function div15bis(){ alert('div15bis'); }
+function div16(){ alert('il devrait y avoir une image mais elle n\'est pas la!'); }
+//function page(){ alert('dom loadé'); }
+// function resolution(){ alert('redimensionnement !'); /*+window.width*/ }
+</script>
+
+<table border="1" cellpadding="5" style="border-collapse: collapse;"><tbody><tr><th>Evénement</th><th>Description</th></tr>
+<tr><td><b>Abort</b> <br>(onabort)</td><td>Cet événement a lieu lorsque l'utilisateur interrompt le chargement de l'image</td></tr>
+<tr><td><b>Blur</b> <br>(onblur)</td><td>Se produit lorsque l'élément perd le focus, c'est-à-dire que l'utilisateur clique hors de cet élément, celui-ci n'est alors plus sélectionné comme étant l'élément actif.</td></tr><tr><td><b>Change</b> 
+<br>(onchange)</td><td>Se produit lorsque l'utilisateur modifie le contenu d'un champ de données.</td></tr><tr><td> <b>Click</b> 
+<br>(onclick)</td><td> Se produit lorsque l'utilisateur clique sur l'élément associé à l'événement.</td></tr><tr><td> <b>Dblclick</b> 
+<br>(ondblclick)</td><td> Se produit lorsque l'utilisateur double-clique sur l'élément associé à l'événement (un lien hypertexte ou un élément de formulaire).</td></tr><tr><td><b>Dragdrop</b> 
+<br>(ondragdrop)</td><td>Se produit lorsque l'utilisateur effectue un <i>glisser-déposer</i> sur la fenêtre du navigateur.</td></tr><tr><td><b>Error</b> 
+<br>(onerror)</td><td>Se déclenche lorsqu'une erreur apparaît durant le chargement de la page.</td></tr><tr><td><b>Focus</b> 
+<br>(onfocus)</td><td>Se produit lorsque l'utilisateur donne le focus à un élément, c'est-à-dire que cet élément est sélectionné comme étant l'élément actif</td></tr><tr><td><b>keydown</b> 
+<br>(onkeydown)</td><td>Se produit lorsque l'utilisateur appuie sur une touche de son clavier.</td></tr><tr><td><b>keypress</b> 
+<br>(onkeypress)</td><td>Se produit lorsque l'utilisateur maintient une touche de son clavier enfoncée.</td></tr><tr><td><b>keyup</b> 
+<br>(onkeyup)</td><td>Se produit lorsque l'utilisateur relâche une touche de son clavier préalablement enfoncée.</td></tr><tr><td><b>Load</b> 
+<br>(onload)</td><td>Se produit lorsque le navigateur de l'utilisateur charge la page en cours</td></tr><tr><td><b>mousedown</b> 
+<br>(mousedown)</td><td>Se produit lorsque l'utilisateur clique un élément</td></tr><tr><td><b>mouseup</b> 
+<br>(mouseup)</td><td>Se produit lorsque l'utilisateur relache le clique</td></tr><tr><td><b>Mouseover</b> 
+<br>(onmouseover)</td><td>Se produit lorsque l'utilisateur positionne le curseur de la souris au-dessus d'un élément</td></tr><tr><td><b>Mouseout</b> 
+<br>(onmouseOut)</td><td>Se produit lorsque le curseur de la souris quitte un élément.</td></tr><tr><td><b>Reset</b> 
+<br>(onreset)</td><td>Se produit lorsque l'utilisateur efface les données d'un formulaire à l'aide du bouton Reset.</td></tr><tr><td><b>Resize</b> 
+<br>(onresize)</td><td>Se produit lorsque l'utilisateur redimensionne la fenêtre du navigateur</td></tr><tr><td><b>Select</b> 
+<br>(onselect)</td><td>Se produit lorsque l'utilisateur sélectionne un texte (ou une partie d'un texte) dans un champ de type "text" ou "textarea"</td></tr><tr><td><b>Input</b> 
+<br>(oninput)</td><td>Se produit lorsque l'utilisateur écrit ou modifie la valeur d'un input</td></tr><tr><td><b>Submit</b> 
+<br>(onsubmit)</td><td>Se produit lorsque l'utilisateur clique sur le bouton de soumission d'un formulaire (le bouton qui permet d'envoyer le formulaire)</td></tr><tr><td><b>Unload</b> 
+<br>(onunload)</td><td>Se produit lorsque le navigateur de l'utilisateur quitte la page en cours</td></tr></tbody></table>
+<!--
+	Tous les évenements :
+oncopy : null
+oncut : null
+onpaste : null
+offsetParent : [object HTMLBodyElement]
+offsetTop : 191
+offsetLeft : 8
+offsetWidth : 100
+offsetHeight : 100
+onabort : null
+onblur : null
+onfocus : null
+oncanplay : null
+oncanplaythrough : null
+onchange : null
+onclick : null
+oncontextmenu : null
+ondblclick : null
+ondrag : null
+ondragend : null
+ondragenter : null
+ondragleave : null
+ondragover : null
+ondragstart : null
+ondrop : null
+ondurationchange : null
+onemptied : null
+onended : null
+oninput : null
+oninvalid : null
+onkeydown : null
+onkeypress : null
+onkeyup : null
+onload : null
+onloadeddata : null
+onloadedmetadata : null
+onloadstart : null
+onmousedown : null
+onmouseenter : null
+onmouseleave : null
+onmousemove : null
+onmouseout : null
+onmouseover : null
+onmouseup : null
+onpause : null
+onplay : null
+onplaying : null
+onprogress : null
+onratechange : null
+onreset : null
+onresize : null
+onscroll : null
+onseeked : null
+onseeking : null
+onselect : null
+onshow : null
+onstalled : null
+onsubmit : null
+onsuspend : null
+ontimeupdate : null
+onvolumechange : null
+onwaiting : null
+onmozfullscreenchange : null
+onmozfullscreenerror : null
+onmozpointerlockchange : null
+onmozpointerlockerror : null
+onerror : null
+-->
+</body>
+</html>

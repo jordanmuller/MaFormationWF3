@@ -1,0 +1,24 @@
+<!Doctype html>
+<html>
+	<head>
+		<script>
+			// Si le JS est avant le HTML, il faut l'englober dans le onload qui attendra que le DOM soit chargé avant d'exécuter le code JS.
+			window.onload = function()
+			{
+				var x = document.querySelectorAll('a[href="diagramme-de-gantt-en-ligne-v2"]');
+				console.log(x);
+				
+				var i;
+				for (i = 0; i < x.length; i++) {
+				//mesClasses[i].style.backgroundColor = "red";
+				console.log(x[i].innerHTML);
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<a href="diagramme-de-gantt-en-ligne-v2">Mon Lien</a>
+		<a href="autrelien">autre Lien</a>
+		<a href="divers">divers</a>
+	</body>
+</html>

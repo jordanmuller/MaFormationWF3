@@ -1,0 +1,83 @@
+<html>
+<body>
+
+<div class="avion"> AirBus1 </div>
+<div class="avion"> AirBus2 </div>
+<div class="avion"> AirBus3 </div>
+
+<div class="voiture">Voiture1</div>
+<div class="voiture">Voiture2</div>
+<div class="voiture">Voiture3</div>
+
+<p>paragraphe 1</p>
+<p>paragraphe 2 </p>
+<p>paragraphe 3 </p>
+<p>paragraphe 4 </p>
+<p>paragraphe 5 </p>
+
+<section id="masection">Section</section>
+
+<span>span</span>
+
+<div id="resultat">resultat... SORTIR LA CONSOLE !!!</div>
+
+<script>
+// -------- OBJECT ELEMENT https://developer.mozilla.org/fr/docs/Web/API/Element/innertHTML
+	// Attention les selecteurs ne renvoie pas rééllement un ARRAY mais une NodeList (avec la length, etc.).
+	
+// -------- SELECTION NATURELLE (SANS GETELEMENT)
+	var monId2 = masection; // Tous les id sont atteignables sans écrire de getElement. je met directement le nom de l'id, c'est comme si on faisait un getElementById.
+	console.log('Sans getElement : '+monId2); // [object HTMLElement] (ARRAY/OBJECT).
+	console.log('monId2 : '+monId2.innerHTML);
+	console.log('body : '+document.body); // body est un cas particulier. il est atteignable sans get element (puisqu'il est unique).	
+	//document.body.innerHTML = "";
+	
+// -------- SELECTION BYID
+	var monId = document.getElementById('masection'); 
+	console.log('monId : '+monId); // [object HTMLElement] (ARRAY/OBJECT).
+	console.log('monId : '+monId.innerHTML);
+	
+// -------- SELECTION TAGNAME
+	var maBalise = document.getElementsByTagName('span'); 
+	console.log('mabalise : '+maBalise); // [object HTMLCollection] (ARRAY/OBJECT).
+	console.log('mabalise : '+maBalise[0].innerHTML);
+	for (i = 0; i < maBalise.length; i++) {
+    //mesClasses[i].style.backgroundColor = "red";
+    console.log("boucle " + i + " : " + maBalise[i].innerHTML);
+	}
+	
+// -------- SELECTION CLASSNAME
+	var mesClasses = document.getElementsByClassName('avion'); // collection HTML (ARRAY/OBJECT).
+	console.log("typeof : "+ typeof(mesClasses)); // collection HTML (ARRAY/OBJECT).
+	console.log("mes classes : " +mesClasses);
+	console.log("mesClasses[0] : "+mesClasses[0].innerHTML);
+	var i;
+	for (i = 0; i < mesClasses.length; i++) {
+    //mesClasses[i].style.backgroundColor = "red";
+    console.log("boucle " + i + " : " + mesClasses[i].innerHTML);
+	}
+	// mesClasses[0].id << permet de connaitre l'id d'un élément, en l'ayant selectionné à l'origine par sa classe.
+	
+// -------- SELECTION QUERYSELECTOR
+	var p = document.querySelector("p");
+	console.log("querySelector : " + p.innerHTML);
+	
+// -------- SELECTION QUERYSELECTORALL
+	var lesP = document.querySelectorAll("p");
+	console.log("querySelectorAll : " + lesP[0].innerHTML);
+	console.log("querySelectorAll : " + lesP[1].innerHTML);
+	// FOR - QUERYSELECTORALL
+	for (i = 0; i < lesP.length; ++i) {
+	   console.log("boucle " + i + " : " + lesP[i].innerHTML);
+	}
+// -------- RESUME DES PRINCIPAUX SELECTEURS
+	// id : selecteur naturel via un id.
+	// getElementById() : recherche un élément d'après son identifiant (attribut id),
+    // getElementsByTagName() : recherche des éléments d'après leur type (balise),
+    // getElementsByClassName() : recherche des éléments d'après leur classe (attribut class)
+	// querySelector() : retourne le premier élément trouvé satisfaisant au sélecteur (type de retour : Element), ou null si aucun objet correspondant n'est trouvé.
+    // querySelectorAll() : retourne tous les éléments satisfaisant au sélecteur, dans l'ordre dans lequel ils apparaissent dans l'arbre du document (type de retour : NodeList), ou un tableau NodeList vide si rien n'est trouvé.
+</script>
+
+</body>
+</html>
