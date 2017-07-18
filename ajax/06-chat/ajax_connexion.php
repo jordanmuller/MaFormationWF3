@@ -24,7 +24,7 @@ $resultat->execute();
 // Fetch
 $membre = $resultat->fetch(PDO::FETCH_ASSOC);
 
-// Vérification si le pseudo existe déjà, égalité stricte car la requête doit être égal à 0
+// Vérification si le pseudo existe déjà, égalité stricte car la requête doit être égal à 0, dans ce cas il n'existe pas
 if ($resultat->rowCount() === 0)
 {
     // Ici le pseudo n'existe pas car nous n'avons pas récupéré au moins une ligne

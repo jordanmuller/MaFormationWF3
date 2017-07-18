@@ -42,7 +42,7 @@ border: 1px solid #c0c0c0;
 }
 #smiley img{ margin: 2px; }
 #formulaire_tchat{
-height: 130px;
+min-height: 130px;
 }
 textarea{
 float: left;
@@ -57,7 +57,7 @@ border: 1px solid #c0c0c0;
 .clear{ clear: both; }
 .bleu { color: #4e99e6; }
 .rose { color: #e86dbe; }
-.erreur{ background: red; padding: 5px; }
+.erreur{ background: red; padding: 5px; color: white; }
 h2{ margin: 0; font-size: 13px; }
 p{ margin: 0; }
 #message_tchat:hover{ cursor: default; }
@@ -67,6 +67,7 @@ p{ margin: 0; }
 #form {
     width: 40%;
     margin: 0 auto;
+    float: left;
 }
 #form input, #form select {
     width: 100%;
@@ -78,4 +79,11 @@ fieldset {
     width: 40%;
     margin: 0 auto;
     min-width: 300px;
+    padding: 20px;
+}
+
+/* DIALOGUE */
+.date {
+    font-size: 12px;
+    color: #000080;
 }

@@ -1,5 +1,12 @@
 <?php
 // echo '<pre>'; var_dump($_SERVER); echo '</pre>';
+
+require_once("inc/init.inc.php");
+
+if(!empty($_SESSION['utilisateur']['pseudo']))
+{
+    header("location:dialogue.php");
+}
 ?>
 <!DOCTYPE html>
 <html lang="fr">
