@@ -728,7 +728,7 @@ class Etudiant
     }
 }
 
-// Un objet un conteneur symbolique qui possède sa propre existence et incorpore des informations(propriétés) et des fonctions(méthodes)
+// Un objet est un conteneur symbolique qui possède sa propre existence et incorpore des informations(propriétés) et des fonctions(méthodes)
 
 // Pour instancier un objet:
 $mon_objet_1 = new Etudiant(); // new est un mot clé obligatoire permettant d'instancier un objet depuis une classe

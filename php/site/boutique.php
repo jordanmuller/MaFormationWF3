@@ -1,7 +1,7 @@
 <?php
 require("inc/init.inc.php");
 echo '<pre>'; var_dump($_SESSION); echo '</pre>';
- $contenu = $pdo->query("SELECT * FROM article");
+$contenu = $pdo->query("SELECT * FROM article");
 
 // Requête de récupération de tous les produits
 if($_POST) // Equivaut à if(!empty($_POST))
@@ -153,7 +153,7 @@ echo '<pre>'; print_r($_POST); echo '</pre>';
                     // echo '<pre>'; print_r($ligne); echo '</pre>';
                     {
                     //    Afin de ne pas avoir de souci avec le float, on ferme et on ouvre une ligne bootstrap (class="row") pour gérer les liens d'affichage
-                        if($compteur%4 == 0 && !$compteur != 0) { echo '<div class="row">'; }
+                        if($compteur%4 == 0 && $compteur != 0) { echo '<div class="row">'; }
                         $compteur++;
                         echo '<div class="col-sm-3">';
                         echo '<div class="panel panel-primary">';

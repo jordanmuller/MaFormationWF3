@@ -25,7 +25,7 @@
                     } else {
                 ?>      
                     <li><a href="<?php echo URL; ?>profil.php">Profil</a></li>
-                    <li><a href="<?php echo URL; ?>connexion.php?action=deconnexion">Déonnexion</a></li>      
+                    <li><a href="<?php echo URL; ?>connexion.php?action=deconnexion">Déconnexion</a></li>      
                 <?php
                     }
                     // Rajout des liens si l'utilisateur est admin
