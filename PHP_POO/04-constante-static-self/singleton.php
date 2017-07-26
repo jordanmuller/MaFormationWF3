@@ -7,7 +7,7 @@
 class Singleton 
 {   
     // Les 10 premières de la classe Singleton sont toujours les mêmes
-    private static $instance = NULL;
+    private static $instance = NULL; // D'abord NULL puis va contenir l'unique objet de la classe Singleton
     private function __construct() {} // fonction private, donc la classe ne peut pas être instanciée...
     // Fonction magique clone qui permet de cloner un objet, ici impossible car la fonction est private
     private function __clone() {} // Fonction private donc l'objet de la classe ne pourra pas être cloné
