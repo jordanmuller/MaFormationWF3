@@ -14,8 +14,10 @@ class Singleton
     
     public static function getInstance()
     {
+        // self::$instance est nulle, comme prédéfinir plus haut
         if(is_null(self::$instance)) // On peut aussi écrire (!self::$instance)
-        { 
+        {
+            //  On instancie la classe Singleton
             self::$instance = new Singleton;
             // self::$instance = new self;
         }
