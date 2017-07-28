@@ -27,8 +27,8 @@ class Model
         $table = strtolower(str_replace(array('Model\\', 'Model'), '', get_called_class()));
 
         // On renvoie la chaîne obtenue
-        // return table
-        return 'article';
+        return $table;
+        // return 'article';
     }
 
     // ---------------------

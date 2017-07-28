@@ -4,7 +4,7 @@
 
 namespace Model;
 
-// Besoin pour les requêtes SPECIFIQUES, pas pour les génériques ou tout est déjà établi
+// Besoin de PDO, Model utilise déjà PDOManager pour les requêtes SPECIFIQUES, pas pour les génériques ou tout est déjà établi
 use PDO;
 
 // On crée la classe ArticleModel héritière de la classe mère Model

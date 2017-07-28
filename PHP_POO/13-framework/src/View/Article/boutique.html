@@ -1,0 +1,95 @@
+<!---- DEBUT CONTENU ---->
+    <div class="container">
+      <div class="starter-template">
+        <h1><span class="glyphicon glyphicon-euro" style="color: NavajoWhite;"></span> Boutique</h1>
+      </div>
+	  
+	  <div class="row">
+		<div class="col-sm-2">
+				
+				<!-- DEBUT MENU CATEGORIES  -->
+				<!-- Les catégories ne sont pas des objets, on les traite donc sous forme d'array  -->
+				<ul class="list-group">
+					<li class="list-group-item"><a href="boutique.php">Tous les articles</a></li>
+					<?php foreach($categories as $categorie) : ?>
+						<li class="list-group-item"><a href="?categorie=<?= $categorie['categorie'] ?>"><?= $categorie['categorie'] ?></a></li>
+					<?php endforeach; ?>
+				</ul>
+				<!-- FIN MENU CATEGORIES  -->
+
+				<hr />
+				
+				<!--<form method="post" action="">
+					<div class="form-group">
+						<label for="couleur">Couleur</label>
+						<select name="couleur" id="couleur" class="form-control">
+							<option></option>
+						</select>
+					</div>
+					<div class="form-group">
+						<label for="taille">Taille</label>
+						<select name="taille" id="taille" class="form-control">
+							<option></option>
+						</select>
+					</div>
+					<div class="form-group">
+						<button type="submit"  name="filtrer" id="filtrer" class="form-control btn btn-primary">Valider</button>
+					</div>
+				</form>-->
+		</div>
+		<div class="col-sm-10">
+				<div class="row">
+				
+				<!---- DEBUT VIGNETTE ARTICLE ---->
+				<!-- On parcourt les objets articles dans une boucle foreach  -->
+				<?php foreach($articles as $article) : ?>
+					<div class="col-sm-3">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<img src="img/logo-boutique.gif" class="img-responsive" />
+							</div>
+							<div class="panel-body text-center">
+								<h5><?= $article->getTitre() ?></h5>
+								<img src="photos/<?= $article->getPhoto() ?>" class="img-responsive" />
+								<br /><p><b>Prix: </b><?= $article->getPrix() ?>€ </p>
+								<hr />
+								<a href="" class="btn btn-primary">Voir la fiche article</a>
+							</div>
+						</div>
+					</div>
+				<?php endforeach; ?>	
+				<!---- FIN VIGNETTE ARTICLE ---->
+
+
+				
+				</div>		
+		</div>
+	  </div>
+	  
+
+    </div>
+	<!---- FIN CONTENU ---->
+	<!-- /.container -->
+	
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

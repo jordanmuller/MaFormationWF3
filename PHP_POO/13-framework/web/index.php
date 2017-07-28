@@ -6,11 +6,15 @@ session_start();
 // __DIR_ contient le chemin local, pas l'url pour y parvenir
 require_once __DIR__ . '/../vendor/autoload.php';
 
-/*
+
 // Lancement de l'application (interrupteur)
-$app = new Application;
+$app = new Manager\Application;
 $app->run();
-*/
+
+// TEST FINAL
+//web/index.php?controller=article&action=afficheAll
+//web/index.php?controller=article&action=affiche&id=6
+//web/index.php?controller=article&action=categorie&cat=pantalon
 
 // // Test 1 Entity
 // // Il faut préciser le namespace où se situe la classe Article du fichier Article.php, ici Entity\
@@ -26,7 +30,6 @@ $app->run();
 // // On passe par la méthode public getPdo pour effectuer une requête SQL
 // $resultat = $pdom->getPdo()->query("SELECT * FROM article");
 // $articles = $resultat->fetchAll(PDO::FETCH_ASSOC);
-
 // echo '<pre>';
 // print_r($articles);
 // echo '</pre>';
@@ -67,14 +70,20 @@ $app->run();
 // print_r($articles);
 // echo '</pre>';
 
-// Test 4 : ArticleModel
 
-$am = new Model\ArticleModel;
-$articles = $am->getAllArticles();
-$article = $am->getArticleById(6);
-$categories = $am->getAllCategories();
-$article2 = $am->getAllArticlesByCategorie('chapeau');
+// // Test 4 : ArticleModel
+// $am = new Model\ArticleModel;
+// $articles = $am->getAllArticles();
+// $article = $am->getArticleById(6);
+// $categories = $am->getAllCategories();
+// $article2 = $am->getAllArticlesByCategorie('chapeau');
 
-echo '<pre>';
-print_r($article2); 
-echo '</pre>'; 
+// echo '<pre>';
+// print_r($article2); 
+// echo '</pre>'; 
+
+// Test 5 : ArticleController
+// $ac = new Controller\ArticleController;
+// $ac->afficheAll();
+// $ac->affiche(9);
+// $ac->categorie('pantalon');
