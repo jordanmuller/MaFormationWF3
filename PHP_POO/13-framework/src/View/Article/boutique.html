@@ -53,7 +53,7 @@
 								<img src="photos/<?= $article->getPhoto() ?>" class="img-responsive" />
 								<br /><p><b>Prix: </b><?= $article->getPrix() ?>€ </p>
 								<hr />
-								<a href="" class="btn btn-primary">Voir la fiche article</a>
+								<a href="?controller=article&action=affiche&id="<?= $article->getId_Article() ?> class="btn btn-primary">Voir la fiche article</a>
 							</div>
 						</div>
 					</div>
